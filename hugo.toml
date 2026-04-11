@@ -1,0 +1,28 @@
+baseURL = '/'
+languageCode = 'zh-CN'
+title = '四十二阁'
+theme = 'reimu'
+defaultContentLanguage = 'zh-cn'
+
+[languages]
+  [languages.zh-cn]
+    languageName = '中文'
+    weight = 1
+
+[pagination]
+  pagerSize = 10
+
+[markup]
+  [markup.highlight]
+    lineNos = true
+    style = 'monokai'
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[outputs]
+  home = ['HTML', 'RSS']
+
+[taxonomies]
+  category = 'categories'
+  tag = 'tags'

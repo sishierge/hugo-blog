@@ -1,0 +1,226 @@
+menu:
+  - name: home
+    url: ""
+    icon:
+  - name: archives
+    url: "archives"
+    icon:
+  - name: about
+    url: "about"
+    icon:
+
+mainSections: ["post"]
+yearFormat: "2006"
+monthFormat: "2006-01"
+dateFormat: "2006-01-02"
+timeFormat: "2006-01-02 15:04:05"
+
+author: 四十二阁
+email: Sishierge42@gmail.com
+description: "思考、记录、分享"
+
+subtitle:
+  typing:
+    enable: true
+    strings:
+      - 思考、记录、分享
+      - 个人博客，分享技术、学习和思考
+    typeSpeed: 100
+    backSpeed: 50
+    backDelay: 2000
+    startDelay: 300
+    loop: true
+    shuffle: false
+    showCursor: true
+    cursorChar: "|"
+    smartBackspace: false
+  text: "思考、记录、分享"
+
+banner: "images/banner.webp"
+avatar: "avatar.webp"
+
+cover:
+toc: true
+
+open_graph:
+  enable: true
+  options:
+
+excerpt_link: 阅读更多
+
+copyright:
+
+footer:
+  since: 2025
+  powered: true
+  count: true
+  busuanzi: true
+  icon:
+    url: "../images/taichi.png"
+    rotate: true
+    mask: true
+
+sidebar:
+  position: right
+  menu: true
+  article:
+    show_common: true
+
+social:
+  email: mailto:Sishierge42@gmail.com
+  github: https://github.com/pronut
+
+widgets:
+  - category
+  - tag
+  - tagcloud
+  - recent_posts
+
+category_limits: 10
+tag_limits: 10
+recent_posts_limits: 5
+tagcloud_limits: 20
+
+only_show_capsule_in_index: false
+uppercase_capsule: true
+show_update_time: false
+
+summary:
+  enable: false
+  style: 'subtitle'
+
+rss:
+  limit: 10
+  showFullContent: false
+  showCopyright: false
+
+sort_order:
+  taxonomy:
+    category: date-reverse
+    tag: date-reverse
+  archive: date-reverse
+  home: default
+
+layout:
+  max_width: 1350px
+
+reimu_cursor:
+  enable: true
+  cursor:
+    default: ../images/cursor/reimu-cursor-default.png
+    pointer: ../images/cursor/reimu-cursor-pointer.png
+    text: ../images/cursor/reimu-cursor-text.png
+
+icon_font: 4552607_a0oqhord1y
+
+font:
+  enable: true
+  article:
+    - Mulish
+    - Noto Serif SC
+  code:
+
+local_font:
+  article:
+    - "-apple-system"
+    - PingFang SC
+    - Microsoft YaHei
+    - sans-serif
+  code:
+    - Menlo
+    - Monaco
+    - Consolas
+    - monospace
+
+dark_mode:
+  enable: auto
+
+preloader:
+  enable: true
+  text:
+    zh-CN: 少女祈祷中...
+    en: Loading...
+  rotate: true
+
+animation:
+  enable: true
+  options:
+    header:
+      title: slide-up
+      subTitle: slide-down
+    home:
+      post: fade-up
+      widget: fade-up
+      sidebar: fade-up
+    article:
+      whole: fade-up
+      date: zoom-in
+      category: zoom-in
+      tag: zoom-in
+      comment: zoom-in
+      reading: zoom-in
+      nav: fade-up
+    archive:
+      whole: fade-up
+      tag: zoom-in
+      category: zoom-in
+      section: fade-up
+      nav: fade-up
+
+firework:
+  enable: true
+  disable_on_mobile: false
+  options:
+    excludeElements: ["a", "button"]
+    particles:
+      - shape: circle
+        move: ["emit"]
+        easing: easeOutExpo
+        colors: ["var(--red-1)", "var(--red-2)", "var(--red-3)", "var(--red-4)"]
+        number: 20
+        duration: [1200, 1800]
+        shapeOptions:
+          radius: [16, 32]
+          alpha: [0.3, 0.5]
+      - shape: circle
+        move: ["diffuse"]
+        easing: easeOutExpo
+        colors: ["var(--red-0)"]
+        number: 1
+        duration: [1200, 1800]
+        shapeOptions:
+          radius: 20
+          alpha: [0.2, 0.5]
+          lineWidth: 6
+
+top:
+  enable: true
+  position: right
+  icon:
+    url: "../images/taichi.png"
+    rotate: true
+    mask: true
+
+math:
+  katex:
+    enable: true
+  mathjax:
+    enable: false
+
+clipboard:
+  success:
+    zh-CN: 复制成功 (*^▽^*)
+    en: Copy successfully (*^▽^*)
+  fail:
+    zh-CN: 复制失败
+    en: Copy failed
+  copyright:
+    enable: false
+
+comment:
+  title:
+    zh-CN: 说些什么吧！
+    en: Leave a comment
+
+pace:
+  enable: true

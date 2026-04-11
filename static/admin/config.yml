@@ -1,0 +1,42 @@
+backend:
+  name: github
+  repo: pronut/hugo-blog
+  branch: main
+
+media_folder: static/images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: "post"
+    label: "文章"
+    folder: "content/post"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "发布日期", name: "date", widget: "datetime" }
+      - { label: "最后修改", name: "lastmod", widget: "datetime", required: false }
+      - { label: "草稿", name: "draft", widget: "boolean", default: false, required: false }
+      - { label: "封面图", name: "cover", widget: "image", required: false }
+      - { label: "描述", name: "description", widget: "string", required: false }
+      - label: "分类"
+        name: "categories"
+        widget: "list"
+        required: false
+      - label: "标签"
+        name: "tags"
+        widget: "list"
+        required: false
+      - { label: "内容", name: "body", widget: "markdown" }
+
+  - name: "pages"
+    label: "页面"
+    files:
+      - label: "关于"
+        name: "about"
+        file: "content/about.md"
+        fields:
+          - { label: "标题", name: "title", widget: "string" }
+          - { label: "描述", name: "description", widget: "string", required: false }
+          - { label: "日期", name: "date", widget: "datetime" }
+          - { label: "内容", name: "body", widget: "markdown" }
