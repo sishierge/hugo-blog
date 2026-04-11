@@ -1,7 +1,9 @@
 backend:
   name: github
-  repo: pronut/hugo-blog
+  repo: sishierge/hugo-blog
   branch: main
+  base_url: https://hugo-blog-cbw.pages.dev
+  auth_endpoint: /auth
 
 media_folder: static/images/uploads
 public_folder: /images/uploads
