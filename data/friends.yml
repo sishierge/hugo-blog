@@ -1,0 +1,7 @@
+# 友链列表（头像需为可外链的图片 URL）
+# 编辑后保存即可，重新构建站点生效
+
+- name: D-Sketon
+  url: https://d-sketon.github.io/
+  desc: Hexo 建站
+  image: https://d-sketon.github.io/avatar/avatar.webp

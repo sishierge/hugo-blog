@@ -8,6 +8,9 @@ menu:
   - name: about
     url: "about"
     icon:
+  - name: friend
+    url: "friend"
+    icon:
 
 mainSections: ["post"]
 yearFormat: "2006"
@@ -37,7 +40,8 @@ subtitle:
   text: "思考、记录、分享"
 
 banner: "images/banner.webp"
-avatar: "avatar.webp"
+# 主题固定前缀 /avatar/ + 本字段 → /avatar/images/avatar.webp，对应 static/avatar/images/avatar.webp
+avatar: "images/avatar.webp"
 
 cover:
 toc: true
@@ -176,7 +180,7 @@ firework:
       - shape: circle
         move: ["emit"]
         easing: easeOutExpo
-        colors: ["var(--red-1)", "var(--red-2)", "var(--red-3)", "var(--red-4)"]
+        colors: ["#555555", "#777777", "#999999", "#bbbbbb"]
         number: 20
         duration: [1200, 1800]
         shapeOptions:
@@ -185,7 +189,7 @@ firework:
       - shape: circle
         move: ["diffuse"]
         easing: easeOutExpo
-        colors: ["var(--red-0)"]
+        colors: ["#222222"]
         number: 1
         duration: [1200, 1800]
         shapeOptions:
@@ -217,10 +221,74 @@ clipboard:
   copyright:
     enable: false
 
+# 评论：https://giscus.app/zh-CN（基于 GitHub Discussions，需公开仓库 + 安装 Giscus App）
 comment:
   title:
     zh-CN: 说些什么吧！
     en: Leave a comment
+  default: giscus
+
+# Giscus：需安装 https://github.com/apps/giscus 并授权本仓库
+giscus:
+  enable: true
+  repo: sishierge/hugo-blog
+  repoId: R_kgDOR_jvnQ
+  category: Comments
+  categoryId: DIC_kwDOR_jvnc4C6pZO
+  mapping: pathname
+  strict: "0"
+  reactionsEnabled: 1
+  emitMetadata: 0
+  inputPosition: bottom
+  theme:
+    light: ""
+    dark: ""
+
+# 以下为显式关闭（与主题默认一致，避免误合并出多套评论）
+valine:
+  enable: false
+waline:
+  enable: false
+twikoo:
+  enable: false
+gitalk:
+  enable: false
+utterances:
+  enable: false
+beaudar:
+  enable: false
+disqus:
+  enable: false
 
 pace:
   enable: true
+
+# 主题色板（变量名沿用主题的 --red-*，此处改为黑白灰）
+internal_theme:
+  light:
+    "--red-0": "#000000"
+    "--red-1": "#1a1a1a"
+    "--red-2": "#404040"
+    "--red-3": "#6b6b6b"
+    "--red-4": "#c4c4c4"
+    "--red-5": "#e8e8e8"
+    "--red-5-5": "#f0f0f0"
+    "--red-6": "#f7f7f7"
+    "--color-red-6-shadow": "rgba(0, 0, 0, 0.12)"
+    "--color-red-3-shadow": "rgba(0, 0, 0, 0.22)"
+  dark:
+    "--red-4": "rgba(255, 255, 255, 0.35)"
+    "--red-5": "rgba(255, 255, 255, 0.12)"
+    "--red-5-5": "rgba(255, 255, 255, 0.06)"
+    "--red-6": "rgba(255, 255, 255, 0.14)"
+
+# 深色模式下主题未暴露 --red-1～3 参数，补一层保证链接/强调色为浅灰
+injector:
+  head_end: |
+    <style>
+    html[data-theme="dark"] {
+      --red-1: #d0d0d0;
+      --red-2: #b0b0b0;
+      --red-3: #909090;
+    }
+    </style>
