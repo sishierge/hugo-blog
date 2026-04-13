@@ -39,7 +39,7 @@ jobs:
           hugo --gc --minify --baseURL "${BASE_URL}"
 
       - name: Publish to Cloudflare Pages
-        if: ${{ secrets.CLOUDFLARE_API_TOKEN != '' && secrets.CLOUDFLARE_ACCOUNT_ID != '' }}
+        if: ${{ vars.CLOUDFLARE_ENABLED == 'true' }}
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -48,7 +48,7 @@ jobs:
           directory: public
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Skip notice (missing Cloudflare secrets)
-        if: ${{ secrets.CLOUDFLARE_API_TOKEN == '' || secrets.CLOUDFLARE_ACCOUNT_ID == '' }}
+      - name: Skip notice (Cloudflare disabled)
+        if: ${{ vars.CLOUDFLARE_ENABLED != 'true' }}
         run: |
-          echo "Cloudflare deploy skipped: missing CLOUDFLARE_API_TOKEN or CLOUDFLARE_ACCOUNT_ID"
+          echo "Cloudflare deploy skipped: set repository variable CLOUDFLARE_ENABLED=true to enable."
