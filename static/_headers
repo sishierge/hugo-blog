@@ -1,0 +1,3 @@
+# Giscus 在 iframe 内加载本站 /css 下的主题 CSS 时需允许 giscus.app 跨域
+/css/*
+  Access-Control-Allow-Origin: https://giscus.app

@@ -1,0 +1,48 @@
+# 本文件在「仅 hugo-blog 作为 Git 仓库根目录」时使用（与外层 博客 仓库里的 workflow 二选一）
+name: Deploy Hugo to Cloudflare Pages
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: hugo-cloudflare-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.147.0"
+          extended: true
+
+      - name: Build
+        env:
+          HUGO_BASEURL: ${{ secrets.HUGO_BASE_URL }}
+        run: |
+          set -e
+          if [ -z "$HUGO_BASEURL" ]; then
+            echo "::error::请在 GitHub 仓库 Secrets 中配置 HUGO_BASE_URL（如 https://xxx.pages.dev）"
+            exit 1
+          fi
+          hugo --gc --minify --baseURL "$HUGO_BASEURL"
+
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: hugo-blog
+          directory: public
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
