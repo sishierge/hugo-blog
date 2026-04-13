@@ -213,33 +213,13 @@
         // 加载 Giscus 脚本
         const giscusScript = document.createElement('script');
         const domMode = document.documentElement.getAttribute("data-theme");
-        const defaultTheme = { dark: 'dark', light: 'light' };
         const customTheme = {
           light: '{{ $params.giscus.theme.light }}' ? '{{ $params.giscus.theme.light }}' : new URL('{{- partial "helpers/scss.html" (dict "source" "css/giscus_reimu_light.scss" "temp" "giscus_reimu_light.scss" "target" "css/giscus_reimu_light.css" "ctx" . "permalinkOnly" true) -}}', window.location.origin).href,
           dark: '{{ $params.giscus.theme.dark }}' ? '{{ $params.giscus.theme.dark }}' : new URL('{{- partial "helpers/scss.html" (dict "source" "css/giscus_reimu_dark.scss" "temp" "giscus_reimu_dark.scss" "target" "css/giscus_reimu_dark.css" "ctx" . "permalinkOnly" true) -}}', window.location.origin).href
         };
-        const hasGiscusCorsHeader = async (url) => {
-          if (!url) return false;
-          if (!url.startsWith('http')) return true; // not a url, maybe a name of built-in theme
-          try {
-            let response = await fetch(url, { method: 'HEAD', cache: 'no-store' });
-            if (response.status === 405) {
-              response = await fetch(url, { method: 'GET', cache: 'no-store' });
-            }
-            const allowOrigin = response.headers.get('access-control-allow-origin') || '';
-            return allowOrigin === '*' || allowOrigin.split(',').map(value => value.trim()).includes('https://giscus.app');
-          } catch {
-            return false;
-          }
-        };
-        let giscusTheme = defaultTheme;
-        const [darkCorsOk, lightCorsOk] = await Promise.all([
-          hasGiscusCorsHeader(customTheme.dark),
-          hasGiscusCorsHeader(customTheme.light)
-        ]);
-        if (darkCorsOk && lightCorsOk) {
-          giscusTheme = customTheme;
-        }
+        // Always use configured custom theme URLs to keep local/production behavior consistent.
+        // We manage CORS via static/_headers.
+        const giscusTheme = customTheme;
 
         const docLang = document.documentElement.lang || 'en';
         const langBase = docLang.split('-')[0];
