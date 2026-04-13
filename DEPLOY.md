@@ -28,17 +28,24 @@
 
 3. **选择仓库**后配置构建：
    - **Root directory（根目录）**：若仓库根就是 `hugo-blog`，留空；若在父仓库 `博客` 里，填 **`hugo-blog`**
-   - **Build command**：  
-     `hugo version && hugo --gc --minify --baseURL "$CF_PAGES_URL"`
+   - **Build command**（须拉取主题子模块；若 Hugo 非 extended 请改用下文 curl 示例）：  
+     `git submodule update --init --recursive && hugo version && hugo --gc --minify --baseURL "$CF_PAGES_URL"`
    - **Build output directory**：`public`
    - **Environment variables**：
      - `HUGO_VERSION` = `0.147.0`（与本地 [hugo-bin](https://github.com/gohugoio/hugo/releases) 对齐；需 **Extended** 时选带 extended 的安装方式，或使用下方「自定义命令」）
 
    若 Cloudflare 默认安装的 Hugo 不含 Extended，可将 **Build command** 改为使用官方安装脚本（示例，版本可按需调整）：
    ```bash
-   curl -sL https://github.com/gohugoio/hugo/releases/download/v0.147.0/hugo_extended_0.147.0_linux-amd64.tar.gz | tar -xz -C /tmp && /tmp/hugo --gc --minify --baseURL "$CF_PAGES_URL"
+   git submodule update --init --recursive && curl -sL https://github.com/gohugoio/hugo/releases/download/v0.147.0/hugo_extended_0.147.0_linux-amd64.tar.gz | tar -xz -C /tmp && /tmp/hugo --gc --minify --baseURL "$CF_PAGES_URL"
    ```
-   （请将 `v0.147.0` 与文件名与 [Release](https://github.com/gohugoio/hugo/releases) 一致。）
+   （请将 `v0.147.0` 与文件名与 [Release](https://github.com/gohugoio/hugo/releases) 一致。）  
+   主题 `themes/reimu` 为 **Git submodule**，构建前必须执行 `git submodule update --init --recursive`（使用已含 extended 的镜像时，也请在 `hugo` 命令前保留该子模块步骤）。
+
+   若 **Root directory** 为 `hugo-blog`，构建命令开头同样要拉子模块，例如：
+   ```bash
+   git submodule update --init --recursive && hugo --gc --minify --baseURL "$CF_PAGES_URL"
+   ```
+   （前提是 Cloudflare 提供的 Hugo 为 **extended** 且版本满足主题要求。）
 
 4. **保存并部署**。首次构建完成后会得到 `https://<项目名>.pages.dev`。
 
