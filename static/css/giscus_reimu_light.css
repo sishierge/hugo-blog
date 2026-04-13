@@ -131,3 +131,8 @@ main span:not(button span), main p:not(button p), main code, main kbd, main inpu
 .gsc-left-header em:has(a[href="https://giscus.app"]) {
   display: none !important;
 }
+
+/* Fallback for giscus DOM/class changes: hide branding link by href target */
+.gsc-left-header a[href*="giscus.app"] {
+  display: none !important;
+}
