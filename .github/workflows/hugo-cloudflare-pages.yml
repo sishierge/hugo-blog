@@ -34,11 +34,9 @@ jobs:
           HUGO_BASEURL: ${{ secrets.HUGO_BASE_URL }}
         run: |
           set -e
-          if [ -z "$HUGO_BASEURL" ]; then
-            echo "::error::请在 GitHub 仓库 Secrets 中配置 HUGO_BASE_URL（如 https://xxx.pages.dev）"
-            exit 1
-          fi
-          hugo --gc --minify --baseURL "$HUGO_BASEURL"
+          BASE_URL="${HUGO_BASEURL:-https://sishierge.de5.net/}"
+          echo "Using baseURL: ${BASE_URL}"
+          hugo --gc --minify --baseURL "${BASE_URL}"
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1
