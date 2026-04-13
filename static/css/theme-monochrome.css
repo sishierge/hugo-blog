@@ -1,0 +1,6 @@
+/* 深色模式：internal_theme 只覆盖 --red-4～6，主色阶需单独提亮以保证对比度 */
+[data-theme="dark"] {
+  --red-1: #e0e0e0;
+  --red-2: #bdbdbd;
+  --red-3: #9e9e9e;
+}

@@ -1,0 +1,51 @@
+/* 顶栏：与主题一致居中对齐，仅叠加半透明毛玻璃条 */
+#header-nav {
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding-left: max(12px, env(safe-area-inset-left));
+  padding-right: max(12px, env(safe-area-inset-right));
+  min-height: 48px;
+  background: rgba(255, 255, 255, 0.78) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="dark"] #header-nav {
+  background: rgba(28, 28, 32, 0.82) !important;
+}
+
+#header-nav:hover {
+  background: rgba(255, 255, 255, 0.9) !important;
+}
+
+[data-theme="dark"] #header-nav:hover {
+  background: rgba(32, 32, 38, 0.92) !important;
+}
+
+/* 略收紧导航间距，顶栏更扁一些 */
+.main-nav-link-wrap {
+  padding: 0 8px;
+}
+
+.main-nav-link {
+  padding: 14px 0;
+}
+
+.main-nav-icon {
+  padding: 14px 3px 14px 0;
+}
+
+.nav-icon {
+  padding: 12px 8px;
+}
+
+#main-nav {
+  margin-right: 2px;
+}
+
+#sub-nav,
+#i18n-nav {
+  flex-shrink: 0;
+}
