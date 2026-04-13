@@ -243,14 +243,29 @@
         giscusScript.setAttribute('crossorigin', 'anonymous');
         giscusScript.async = true;
         container.appendChild(giscusScript);
+        const forceGiscusTheme = (isDark) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe || !iframe.contentWindow) return false;
+          iframe.contentWindow.postMessage(
+            { giscus: { setConfig: { theme: isDark ? giscusTheme.dark : giscusTheme.light } } },
+            'https://giscus.app'
+          );
+          return true;
+        };
+        // Force theme once iframe appears; this avoids edge cases where giscus falls back to built-in themes.
+        let forceRetry = 0;
+        const forceTimer = setInterval(() => {
+          const isDark = document.documentElement.getAttribute("data-theme") === 'dark';
+          if (forceGiscusTheme(isDark) || forceRetry++ > 20) {
+            clearInterval(forceTimer);
+          }
+        }, 250);
          const themeHandler = (e) => {
           const isDark = e.detail.isDark;
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe || !iframe.contentWindow) {
+          if (!forceGiscusTheme(isDark)) {
             document.body.removeEventListener('reimu:theme-set', themeHandler);
             return;
           }
-          iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: isDark ? giscusTheme.dark : giscusTheme.light } } }, 'https://giscus.app');
         };
         document.body.addEventListener('reimu:theme-set', themeHandler);
       }
