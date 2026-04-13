@@ -49,3 +49,8 @@
 #i18n-nav {
   flex-shrink: 0;
 }
+
+/* 与本地主题补丁保持一致：隐藏评论系统切换条（含 giscus 标签） */
+.comment-selector {
+  display: none !important;
+}
