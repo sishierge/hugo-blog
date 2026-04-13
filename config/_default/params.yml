@@ -244,11 +244,10 @@ giscus:
   reactionsEnabled: 1
   emitMetadata: 0
   inputPosition: bottom
-  # 留空则使用主题内置的 Reimu 风格 Giscus CSS（可写自定义 CSS URL 或内置主题名如 light）
-  # 若写死 light/dark_dimmed，会走 giscus.app 自带主题，无法套用下面在 giscus_reimu_*.scss 里加的样式
+  # 使用站点静态目录中的自定义 Giscus 主题 CSS，避免依赖 themes/reimu 子模块本地改动
   theme:
-    light: ""
-    dark: ""
+    light: "https://sishierge.de5.net/css/giscus_reimu_light.css"
+    dark: "https://sishierge.de5.net/css/giscus_reimu_dark.css"
 
 valine:
   enable: false
