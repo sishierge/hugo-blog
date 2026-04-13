@@ -136,3 +136,8 @@ main span:not(button span), main p:not(button p), main code, main kbd, main inpu
 .gsc-left-header a[href*="giscus.app"] {
   display: none !important;
 }
+
+/* Final fallback: hide any giscus.app branding anchor in widget */
+a[href*="giscus.app"] {
+  display: none !important;
+}

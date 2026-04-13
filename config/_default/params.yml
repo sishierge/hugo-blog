@@ -246,8 +246,8 @@ giscus:
   inputPosition: bottom
   # 使用站点静态目录中的自定义 Giscus 主题 CSS，避免依赖 themes/reimu 子模块本地改动
   theme:
-    light: "https://sishierge.de5.net/css/giscus_reimu_light.css"
-    dark: "https://sishierge.de5.net/css/giscus_reimu_dark.css"
+    light: "https://sishierge.de5.net/css/giscus_reimu_light.css?v=20260413"
+    dark: "https://sishierge.de5.net/css/giscus_reimu_dark.css?v=20260413"
 
 valine:
   enable: false
